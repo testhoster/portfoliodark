@@ -5,13 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rithvik Koruturu - Portfolio</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         :root {
             --primary-color: #2563eb;
             --primary-dark: #1d4ed8;
@@ -32,6 +27,9 @@
             --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
             --gradient-primary: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             --gradient-subtle: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            --max-width: 1200px;
+            --section-padding: 6rem 0;
+            --container-padding: 2rem;
         }
 
         [data-theme="dark"] {
@@ -50,21 +48,28 @@
             --gradient-subtle: linear-gradient(135deg, #1e293b 0%, #334155 100%);
         }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
             line-height: 1.6;
             color: var(--text-primary);
             background-color: var(--bg-primary);
             transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
         }
 
-        /* Navigation */
+        /* Enhanced Navigation */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
             box-shadow: var(--shadow-sm);
             z-index: 1000;
             transition: all 0.3s ease;
@@ -77,9 +82,9 @@
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: var(--max-width);
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 1rem var(--container-padding);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -90,12 +95,13 @@
             font-weight: 700;
             color: var(--primary-color);
             text-decoration: none;
+            letter-spacing: -0.025em;
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
             align-items: center;
         }
 
@@ -104,9 +110,10 @@
             color: var(--text-secondary);
             font-weight: 500;
             font-size: 0.95rem;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
+            padding: 0.5rem 0;
         }
 
         .nav-link:hover,
@@ -128,12 +135,12 @@
         .theme-toggle {
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            width: 40px;
-            height: 40px;
+            border-radius: 10px;
+            width: 44px;
+            height: 44px;
             cursor: pointer;
             color: var(--text-secondary);
-            font-size: 1rem;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
@@ -144,46 +151,48 @@
             background: var(--primary-color);
             color: white;
             border-color: var(--primary-color);
+            transform: scale(1.05);
         }
 
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 2px;
-            background: var(--text-primary);
-            margin: 3px 0;
-            transition: 0.3s;
-            border-radius: 1px;
-        }
-
-        /* Main Content */
+        /* Enhanced Container System */
         .container {
-            max-width: 1200px;
+            max-width: var(--max-width);
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 var(--container-padding);
         }
 
         .section {
-            padding: 6rem 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
+            padding: var(--section-padding);
+            position: relative;
         }
 
         .section-content {
             width: 100%;
         }
 
-        /* Home Section */
+        /* Enhanced Home Section */
         .home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
             text-align: center;
             background: var(--bg-primary);
             position: relative;
+        }
+
+        .home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .profile-section {
+            margin-bottom: 3rem;
         }
 
         .profile-img {
@@ -192,9 +201,10 @@
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid var(--primary-color);
-            margin-bottom: 2rem;
+            margin: 0 auto 2rem;
             box-shadow: var(--shadow-lg);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            display: block;
         }
 
         .profile-img:hover {
@@ -203,25 +213,28 @@
         }
 
         .home h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             margin-bottom: 1rem;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--text-primary);
             letter-spacing: -0.025em;
+            line-height: 1.1;
         }
 
         .home .subtitle {
-            font-size: 1.25rem;
+            font-size: 1.375rem;
             color: var(--primary-color);
             font-weight: 600;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .home p {
-            font-size: 1.1rem;
+        .home .description {
+            font-size: 1.125rem;
             color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 600px;
+            margin-bottom: 3rem;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.7;
@@ -230,7 +243,7 @@
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 1.5rem;
             margin-top: 2rem;
         }
 
@@ -238,11 +251,11 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 48px;
-            height: 48px;
-            border-radius: 8px;
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             transition: all 0.3s ease;
             background: var(--bg-secondary);
             color: var(--text-secondary);
@@ -252,102 +265,141 @@
         .social-link:hover {
             background: var(--primary-color);
             color: white;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
             border-color: var(--primary-color);
         }
 
-        /* Section Headings */
+        /* Enhanced Section Titles */
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            font-weight: 700;
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            margin-bottom: 4rem;
+            font-weight: 800;
             color: var(--text-primary);
             position: relative;
+            letter-spacing: -0.025em;
         }
 
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -12px;
+            bottom: -16px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: var(--primary-color);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
             border-radius: 2px;
         }
 
-        /* Cards */
+        /* Enhanced Cards System */
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
             margin-top: 2rem;
+            align-items: start;
         }
 
         .card {
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 2rem;
+            border-radius: 16px;
+            padding: 2.5rem;
             box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
             border-color: var(--primary-color);
         }
 
         .card h3 {
             color: var(--text-primary);
-            margin-bottom: 0.5rem;
-            font-size: 1.25rem;
-            font-weight: 600;
+            margin-bottom: 0.75rem;
+            font-size: 1.375rem;
+            font-weight: 700;
+            line-height: 1.3;
         }
 
         .card-meta {
-            font-size: 0.875rem;
+            font-size: 0.95rem;
             color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-weight: 500;
+            margin-bottom: 1.25rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
         }
 
         .card p {
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            flex-grow: 1;
         }
 
-        .btn {
-            display: inline-block;
+        /* Enhanced Skills Tags */
+        .experience-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            align-items: center;
+        }
+
+        .skill-tag {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
             background: var(--primary-color);
             color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
+            border-color: var(--primary-color);
+        }
+
+        /* Enhanced Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.875rem 1.75rem;
+            border-radius: 10px;
             text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
+            font-weight: 600;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
             box-shadow: var(--shadow-sm);
+            letter-spacing: 0.025em;
         }
 
         .btn:hover {
             background: var(--primary-dark);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
 
         .btn-outline {
             background: transparent;
             color: var(--primary-color);
-            border: 1px solid var(--primary-color);
+            border: 2px solid var(--primary-color);
         }
 
         .btn-outline:hover {
@@ -355,66 +407,77 @@
             color: white;
         }
 
-        /* Resume Section */
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+            flex-wrap: wrap;
+        }
+
+        /* Enhanced Resume Section */
         .resume-download {
             text-align: center;
-            padding: 3rem;
-            background: var(--bg-secondary);
-            border-radius: 12px;
+            padding: 4rem 3rem;
+            background: var(--gradient-subtle);
+            border-radius: 20px;
             border: 1px solid var(--border-color);
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
+            box-shadow: var(--shadow);
         }
 
         .resume-download i {
-            font-size: 3rem;
+            font-size: 4rem;
             color: var(--primary-color);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            display: block;
         }
 
         .resume-download h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
             color: var(--text-primary);
+            font-weight: 700;
         }
 
         .resume-download p {
             color: var(--text-secondary);
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
         }
 
-        /* Contact Form */
+        /* Enhanced Contact Form */
         .contact-form {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
             background: var(--bg-primary);
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
             border: 1px solid var(--border-color);
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
             color: var(--text-primary);
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
             background: var(--bg-primary);
             color: var(--text-primary);
-            font-size: 0.9rem;
+            font-size: 1rem;
             transition: all 0.3s ease;
             font-family: inherit;
         }
@@ -423,11 +486,11 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
         }
 
         .form-group textarea {
-            height: 120px;
+            height: 140px;
             resize: vertical;
         }
 
@@ -436,8 +499,42 @@
             background: var(--bg-secondary);
         }
 
-        /* Responsive Design */
+        /* Enhanced Mobile Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Enhanced Responsive Design */
         @media (max-width: 768px) {
+            :root {
+                --section-padding: 4rem 0;
+                --container-padding: 1.5rem;
+            }
+
             .nav-menu {
                 position: fixed;
                 left: -100%;
@@ -447,10 +544,10 @@
                 width: 100%;
                 text-align: center;
                 transition: 0.3s;
-                box-shadow: var(--shadow);
+                box-shadow: var(--shadow-lg);
                 padding: 2rem 0;
                 border-top: 1px solid var(--border-color);
-                gap: 1rem;
+                gap: 1.5rem;
             }
 
             .nav-menu.active {
@@ -461,38 +558,72 @@
                 display: flex;
             }
 
-            .home h1 {
-                font-size: 2.5rem;
-            }
-
-            .section {
-                padding: 4rem 0;
-                min-height: auto;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
             .cards-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .container {
-                padding: 0 1rem;
+                gap: 2rem;
             }
 
             .profile-img {
-                width: 150px;
-                height: 150px;
+                width: 140px;
+                height: 140px;
+            }
+
+            .home .description {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .social-links {
+                gap: 1rem;
+            }
+
+            .social-link {
+                width: 48px;
+                height: 48px;
+                font-size: 1.2rem;
+            }
+
+            .card {
+                padding: 2rem;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .resume-download {
+                padding: 3rem 2rem;
             }
         }
 
-        /* Animations */
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 1rem 1rem;
+            }
+
+            .logo {
+                font-size: 1.25rem;
+            }
+
+            .experience-skills {
+                justify-content: center;
+            }
+
+            .skill-tag {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+
+        /* Enhanced Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -500,8 +631,23 @@
             }
         }
 
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
         .fade-in-up {
-            animation: fadeInUp 0.6s ease forwards;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .slide-in-left {
+            animation: slideInFromLeft 0.8s ease forwards;
         }
 
         /* Smooth scrolling */
@@ -509,17 +655,12 @@
             scroll-behavior: smooth;
         }
 
-        /* Button groups */
-        .btn-group {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        @media (max-width: 480px) {
-            .btn-group {
-                flex-direction: column;
-            }
+        /* Enhanced focus states for accessibility */
+        .btn:focus,
+        .nav-link:focus,
+        .social-link:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
         }
     </style>
 </head>
@@ -527,7 +668,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#home" class="logo">Portfolio@RithvikKoruturu</a>
+            <a href="#home" class="logo">Rithvik Koruturu</a>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#experience" class="nav-link">Experience</a></li>
@@ -535,9 +676,9 @@
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#resume" class="nav-link">Resume</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li><button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-sun"></i></button></li>
+                <li><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"><i class="fas fa-sun"></i></button></li>
             </ul>
-            <div class="hamburger" onclick="toggleMenu()">
+            <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -545,16 +686,17 @@
         </div>
     </nav>
 
-      <!-- Home Section -->
+    <!-- Home Section -->
     <section id="home" class="section home">
         <div class="container">
             <div class="section-content fade-in-up">
-                <!-- <img src="https://via.placeholder.com/180x180/2563eb/ffffff?text=YN" alt="Profile Picture" class="profile-img"> -->
+                <div class="profile-section">
+                    <div style="width: 180px; height: 180px; border-radius: 50%; background: var(--gradient-primary); margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white; font-weight: 700; box-shadow: var(--shadow-lg);">RK</div>
+                </div>
                 <h1>Koruturu Rithvik</h1>
-                <p class="subtitle"> Computer Science Engineering student</p>
-                <p>I specialize in Artificial Intelligence, Machine Learning, Deep Learning, and Meta-Heuristic Algorithms. I’ve also worked extensively on Full-Stack Web Development and am exploring the exciting field of Quantum Machine Learning. My projects range from building scalable web applications to applying AI and optimization techniques to solve complex problems.
-
-I aim to create impactful solutions that push the boundaries of technology, particularly in areas like healthcare, finance, and optimization.</p>
+                <p class="subtitle">Computer Science Engineering Student</p>
+                <p class="description">I specialize in Artificial Intelligence, Machine Learning, Deep Learning, and Meta-Heuristic Algorithms. I've also worked extensively on Full-Stack Web Development and am exploring the exciting field of Quantum Machine Learning. My projects range from building scalable web applications to applying AI and optimization techniques to solve complex problems.</p>
+                <p class="description">I aim to create impactful solutions that push the boundaries of technology, particularly in areas like healthcare, finance, and optimization.</p>
                 <div class="social-links">
                     <a href="https://linkedin.com/in/rithvikkoruturu" class="social-link" target="_blank" aria-label="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
@@ -574,94 +716,98 @@ I aim to create impactful solutions that push the boundaries of technology, part
     <section id="experience" class="section">
         <div class="container">
             <div class="section-content">
-                <h2 class="section-title">Experience</h2>
+                <h2 class="section-title">Professional Experience</h2>
                 <div class="cards-grid">
                     <div class="card">
                         <h3>Quantum Machine Learning Intern</h3>
                         <p class="card-meta">AnantWave • Feb 2025 - Present</p>
-                        <p>Lead development of Quantum Machine Learning models to serve automotive purposes .</p>
+                        <p>Leading development of Quantum Machine Learning models to serve automotive purposes, focusing on optimization algorithms and quantum computing applications in real-world scenarios.</p>
                         <div class="experience-skills">
+                            <span class="skill-tag">Quantum Computing</span>
                             <span class="skill-tag">Machine Learning</span>
-                            <span class="skill-tag">Research</span>
                             <span class="skill-tag">Deep Learning</span>
-                            <span class="skill-tag">Optimization Algorithms</span>
-                            <span class="skill-tag">Team Leadership</span>
+                            <span class="skill-tag">Optimization</span>
+                            <span class="skill-tag">Research</span>
                         </div>
+                        <a href="https://drive.google.com/file/d/1zgYhqYCjP9OI41-w0KjSzQI5tS6u5aIy/view?usp=sharing" class="btn btn-outline">View Certificate</a>
                     </div>
                     <div class="card">
                         <h3>Research Intern</h3>
                         <p class="card-meta">Suvidha Foundations • Feb 2025 - May 2025</p>
-                        <p>explored and implemented these algorithms but also developed custom variants and evaluated their performance on complex engineering optimization problems. This experience helped me deepen my understanding of nature-inspired algorithms and their applications in real-world scenarios..</p>
+                        <p>Explored and implemented nature-based optimization algorithms, developed custom variants, and evaluated their performance on complex engineering optimization problems, deepening understanding of bio-inspired computing.</p>
                         <div class="experience-skills">
-                            <span class="skill-tag">Nature Based optimization Algorithms</span>
-                            <span class="skill-tag">Matlab</span>
+                            <span class="skill-tag">Nature-Based Algorithms</span>
+                            <span class="skill-tag">MATLAB</span>
+                            <span class="skill-tag">Optimization</span>
                             <span class="skill-tag">Research</span>
-                            <span class="skill-tag">Team Leadership</span>
                         </div>
+                        <a href="https://drive.google.com/file/d/1MtAaOj-Fu_hc65MgCOyzwZRNkqd1d3Q6/view?usp=sharing" class="btn btn-outline">View Certificate</a>
                     </div>
                     <div class="card">
-                        <h3>GEN-AI Extern</h3>
+                        <h3>Gen-AI Extern</h3>
                         <p class="card-meta">SmartInternz • Jul 2024 - Aug 2024</p>
-                        <p>Built and maintained company website and internal tools. Gained experience in full-stack development while working closely with senior developers in an agile environment.</p>
+                        <p>Developed generative AI applications using Google Cloud Platform and Gemini APIs, focusing on prompt engineering and autoencoder implementations for advanced AI solutions.</p>
                         <div class="experience-skills">
-                            <span class="skill-tag">GCP</span>
+                            <span class="skill-tag">Google Cloud Platform</span>
                             <span class="skill-tag">Gemini APIs</span>
-                            <span class="skill-tag">PromptEngineering</span>
+                            <span class="skill-tag">Prompt Engineering</span>
                             <span class="skill-tag">AutoEncoder</span>
                         </div>
+                        <a href="https://drive.google.com/file/d/1b18uERffnve-JNJk9AutZIsSaYAMTx6-/view?usp=sharing" class="btn btn-outline">View Certificate</a>
                     </div>
                     <div class="card">
                         <h3>Artificial Intelligence Intern</h3>
-                        <p class="card-meta">Suvidha Foundations • Feb 2025 - May 2025</p>
-                        <p>Developed Text Summarization model Using BERT as backbone</p>
+                        <p class="card-meta">Suvidha Foundations • Jun 2024 - Jul 2024</p>
+                        <p>Developed advanced text summarization models using BERT as backbone, implementing state-of-the-art NLP techniques for document processing and analysis.</p>
                         <div class="experience-skills">
                             <span class="skill-tag">Python</span>
                             <span class="skill-tag">HuggingFace</span>
-                            <span class="skill-tag">AI</span>
+                            <span class="skill-tag">BERT</span>
                             <span class="skill-tag">NLP</span>
                         </div>
+                        <a href="https://drive.google.com/file/d/1_9o63xoh_nlNqqid5oEaoLqTyxZN5Cja/view?usp=sharing" class="btn btn-outline">View Certificate</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-  <!-- Certifications Section -->
-<section id="certifications" class="section">
-    <div class="container">
-        <div class="section-content">
-            <h2 class="section-title">Certifications</h2>
-            <div class="cards-grid">
-                <div class="card">
-                    <h3>AWS Academy Graduate - AWS Academy Cloud Architecting</h3>
-                    <p class="card-meta">Amazon Web Services • 2024</p>
-                    <p>Comprehensive certification covering cloud architecture, security, and best practices for designing scalable applications on AWS.</p>
-                    <a href="https://www.credly.com/badges/061febe9-c120-463a-bf2b-6933d6b1eeb3/public_url" class="btn btn-outline">View Certificate</a>
-                </div>
-                <div class="card">
-                    <h3>AWS Academy Graduate - AWS Academy Cloud Foundations</h3>
-                    <p class="card-meta">Amazon Web Services • 2023</p>
-                    <p>Foundational knowledge of AWS Cloud concepts, core services, security, architecture, pricing, and support.</p>
-                    <a href="https://www.credly.com/badges/0c7d70b9-406d-4d13-9d2d-67eb1f13e146/public_url" class="btn btn-outline">View Certificate</a>
-                </div>
-                <div class="card">
-                    <h3>Develop GenAI Apps with Gemini and Streamlit Skill Badge</h3>
-                    <p class="card-meta">Google • 2024</p>
-                    <p>Project-based certification showcasing the ability to build generative AI apps using Gemini and Streamlit.</p>
-                    <a href="https://www.credly.com/badges/0b9efef7-edf8-4bb7-a818-c4bc7047fedb/linked_in_profile" class="btn btn-outline">View Certificate</a>
-                </div>
-                <div class="card">
-                    <h3>Inspect Rich Documents with Gemini Multimodality and Multimodal RAG Skill Badge</h3>
-                    <p class="card-meta">Google • 2024</p>
-                    <p>Skill badge focused on using Gemini's multimodal capabilities and Retrieval-Augmented Generation (RAG) for document analysis.</p>
-                    <a href="https://www.credly.com/badges/15433cf9-16dd-4278-8c20-935fbdc6996b/linked_in_profile" class="btn btn-outline">View Certificate</a>
-                </div>
-                <div class="card">
-                    <h3>Prompt Design in Vertex AI Skill Badge</h3>
-                    <p class="card-meta">Google • 2024</p>
-                    <p>Hands-on certification covering prompt engineering techniques for large language models using Vertex AI.</p>
-                    <a href="https://www.credly.com/badges/078fe373-05cd-48f6-b3f5-1c39757723e3/linked_in_profile" class="btn btn-outline">View Certificate</a>
-                </div>
+    <!-- Certifications Section -->
+    <section id="certifications" class="section">
+        <div class="container">
+            <div class="section-content">
+                <h2 class="section-title">Certifications & Achievements</h2>
+                <div class="cards-grid">
+                    <div class="card">
+                        <h3>AWS Academy Cloud Architecting</h3>
+                        <p class="card-meta">Amazon Web Services • 2024</p>
+                        <p>Comprehensive certification covering cloud architecture, security, and best practices for designing scalable applications on AWS infrastructure.</p>
+                        <a href="https://www.credly.com/badges/061febe9-c120-463a-bf2b-6933d6b1eeb3/public_url" class="btn btn-outline" target="_blank">View Certificate</a>
+                    </div>
+                    <div class="card">
+                        <h3>AWS Academy Cloud Foundations</h3>
+                        <p class="card-meta">Amazon Web Services • 2023</p>
+                        <p>Foundational knowledge of AWS Cloud concepts, core services, security, architecture, pricing, and comprehensive cloud support systems.</p>
+                        <a href="https://www.credly.com/badges/0c7d70b9-406d-4d13-9d2d-67eb1f13e146/public_url" class="btn btn-outline" target="_blank">View Certificate</a>
+                    </div>
+                    <div class="card">
+                        <h3>Develop GenAI Apps with Gemini</h3>
+                        <p class="card-meta">Google Cloud • 2024</p>
+                        <p>Project-based certification showcasing expertise in building generative AI applications using Gemini and Streamlit frameworks.</p>
+                        <a href="https://www.credly.com/badges/0b9efef7-edf8-4bb7-a818-c4bc7047fedb/linked_in_profile" class="btn btn-outline" target="_blank">View Certificate</a>
+                    </div>
+                    <div class="card">
+                        <h3>Multimodal RAG with Gemini</h3>
+                        <p class="card-meta">Google Cloud • 2024</p>
+                        <p>Advanced skill badge focusing on Gemini's multimodal capabilities and Retrieval-Augmented Generation for complex document analysis.</p>
+                        <a href="https://www.credly.com/badges/15433cf9-16dd-4278-8c20-935fbdc6996b/linked_in_profile" class="btn btn-outline" target="_blank">View Certificate</a>
+                    </div>
+                    <div class="card">
+                        <h3>Prompt Design in Vertex AI</h3>
+                        <p class="card-meta">Google Cloud • 2024</p>
+                        <p>Hands-on certification covering advanced prompt engineering techniques for large language models using Google's Vertex AI platform.</p>
+                        <a href="https://www.credly.com/badges/078fe373-05cd-48f6-b3f5-1c39757723e3/linked_in_profile" class="btn btn-outline" target="_blank">View Certificate</a>
+                    </div>
                 <div class="card">
                     <h3>Java: Data Structures</h3>
                     <p class="card-meta">LinkedIn Learning • 2024</p>
@@ -732,7 +878,7 @@ I aim to create impactful solutions that push the boundaries of technology, part
                     <i class="fas fa-file-pdf"></i>
                     <h3>Download My Resume</h3>
                     <p>Get a comprehensive overview of my experience, skills, and achievements.</p>
-                    <a href="#" class="btn">
+                    <a href="https://drive.google.com/file/d/1K1ljJUlyBPWxkB1ZRorI_VlH5gxtDQI_/view?usp=sharing" class="btn">
                         <i class="fas fa-download" style="margin-right: 0.5rem;"></i>
                         Download PDF
                     </a>
@@ -747,7 +893,7 @@ I aim to create impactful solutions that push the boundaries of technology, part
             <div class="section-content">
                 <h2 class="section-title">Get In Touch</h2>
                 <div class="contact-form">
-                    <form action="https://formspree.io/f/your-form-id" method="POST">
+                    <form action="https://formspree.io/f/xjkgooel" method="POST">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" required>
